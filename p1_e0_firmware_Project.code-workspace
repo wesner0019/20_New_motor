@@ -1,0 +1,13 @@
+{
+    "folders": [
+        {
+            "path": "../firmware_Functional_Test_p1_e0/functional_testing_firmware_project"
+        },
+        {
+            "path": "../firmware_p1_e0/p1_e0_firmware_Project"
+        },
+        {
+            "path": "."
+        }
+    ]
+}
