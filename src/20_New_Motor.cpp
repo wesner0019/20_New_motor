@@ -7,6 +7,8 @@
 #include "Particle.h"
 #include "MotorDriverMP6550.h"
 
+// PRODUCT_ID(11207);
+
 SYSTEM_THREAD(ENABLED);
 SYSTEM_MODE(SEMI_AUTOMATIC);
 // SerialLogHandler logHandler(LOG_LEVEL_ALL);
@@ -24,6 +26,7 @@ MotorDriverMP6550 motorDriver(PIN_SLEEP, PIN_IN1, PIN_IN2, PIN_VISEN);
 int controlMotor(String command);
 
 void setup() {
+    Particle.connect();
     Serial.begin(9600);
     motorDriver.begin();
     Particle.function("controlMotor", controlMotor);
@@ -44,7 +47,7 @@ int controlMotor(String command) {
     if (speed == 0) {
         motorDriver.setEnabled(false);
         motorDriver.setSpeed(speed);
-        return -1;
+        return speed;
     } else {
         motorDriver.setEnabled(true);
         motorDriver.setSpeed(speed);

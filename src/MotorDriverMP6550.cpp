@@ -31,8 +31,19 @@ void MotorDriverMP6550::setEnabled(bool isEnabled) {
 }
 
 float MotorDriverMP6550::getCurrent() {
+    // The current limit threshold is reached when the VISEN pin reaches 0.5V.
+    //example: ISET = 5k resistor, VISEN = 0.5V/A (5,000 ohm * 0.0001 A) (ISET sources 100uA)
+        // current limit = 0.5/0.5 = 1.0 A    
+    
+    // ISET = 2k resistor, VISEN = 0.2V/A (2,000 ohm * 0.0001 A)
+       // current limit = 0.5/0.2 = 2.5 A
+
+    // ISET = 10k resistor, VISEN = 1V/A (10,000 ohm * 0.0001 A)
+       // current limit = 0.5/1.0 = 0.5 A
+
     int adcValue = analogRead(_pin_visen);
     float voltage = (float)adcValue * 3.3 / 4095; // Convert ADC value to voltage (assuming a 3.3V reference)
-    float current = voltage / 0.525; // Convert voltage to current based on the typical VISEN scaling factor (0.525 V/A)
+    float current = voltage / 0.200; // Convert voltage to current based on the typical VISEN scaling factor (0.200 V/A)
+    
     return current;
 }
