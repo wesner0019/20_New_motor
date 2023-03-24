@@ -10,7 +10,7 @@ public:
     void begin();
     void setSpeed(int16_t speed);
     void setEnabled(bool isEnabled);
-    float getCurrent();
+    int getCurrent();
 
 private:
     uint8_t _pin_sleep;
